@@ -7,10 +7,11 @@ const youtube = <Icon name={'youtube-play'} size={30} color={'red'}/>
 const telegram = <Icon name={'telegram'} size={30} color={'skyblue'}/>
 const reddit = <Icon name={'reddit'} size={30} color={'orange'}/>
 const whatsapp = <Icon name={'whatsapp'} size={30} color={'green'}/>
+const camera = <Icon name={'camera'} size={30} color={'orange'}/>
 
 const ProfileCard = () => {
     const user = {
-        avatar: "https://wallpapercave.com/wp/wp12655668.jpg",
+        avatar: require('C:/Users/USRE/Desktop/DISPOSITIVOS MOVILES/mobil-2-main/frontend/app-ejemplo/assets/avatar2.jpg'),
         coverPhoto: "https://wallpapercave.com/wp/wp12678185.jpg",
         name: "Jairo Armijos"
     }
@@ -58,6 +59,13 @@ const ProfileCard = () => {
                     <View style={styles.socialMediaContainer}>
                         {whatsapp}
                         <Text style={styles.socialMediaText}>WhatsApp</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+
+                <TouchableWithoutFeedback onPress={()=>Linking.openURL('https://www.kwai.com/es')}>
+                    <View style={styles.socialMediaContainer}>
+                        {camera}
+                        <Text style={styles.socialMediaText}>kwai</Text>
                     </View>
                 </TouchableWithoutFeedback>
 

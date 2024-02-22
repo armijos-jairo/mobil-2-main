@@ -29,13 +29,14 @@ const upload = multer({
     }
 })
 
-import {OpenAIApi, Configuration} from 'openai'
-import * as path from "path";
 
-const configuration = new Configuration({
-    apiKey: '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'
+import { OpenAI } from '@langchain/openai';
+
+const openai = new OpenAI({
+    openAIApiKey: "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"
 })
-const openai = new OpenAIApi(configuration)
+
+import * as path from "path";
 
 const generatePrompt = (numberToConvert: number) => {
     return ` Tu tienes un rol de convertidor binario y requiero que conviertes este numero ${numberToConvert} a  binario`
@@ -91,14 +92,12 @@ app.post('/nombres', (req, res) => {
 
 app.post('/openapi', async (req, res) => {
     const {prompt} = req.body
-    const completion = await openai.createCompletion({
-        model: 'text-davinci-003',
-        prompt: generatePrompt(prompt),
-        temperature: 0.1
-    })
+    const completion = await openai.invoke(
+        generatePrompt(prompt)
+    )
 
     // @ts-ignore
-    res.send({result: completion.data.choices[0].text.trim(), token: completion.data.usage.total_tokens})
+    res.send({result: completion})
 })
 
 app.delete('/nombres/:id', (req, res) => {
